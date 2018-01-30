@@ -77,7 +77,7 @@ class MainView : View("Smart Caesar") {
                 textAlignment = TextAlignment.CENTER
                 alignment = Pos.CENTER
                 fontWeight = FontWeight.BOLD
-                paddingBottom = 5
+                paddingBottom = 8
             }
         }
     }
