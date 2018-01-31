@@ -4,6 +4,6 @@ import tornadofx.*
 
 class AlphabetController : Controller() {
     companion object {
-        var alphabet = "abcdefghijklmnopqrstuvwxyz " + "0123456789"
+        var alphabet = "abcdefghijklmnopqrstuvwxyz" + " " + "0123456789"
     }
 }
