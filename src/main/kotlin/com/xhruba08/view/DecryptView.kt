@@ -1,5 +1,8 @@
 package com.xhruba08.view
 
+import com.xhruba08.controller.DecryptController
+import javafx.beans.property.SimpleBooleanProperty
+import javafx.beans.property.SimpleStringProperty
 import javafx.geometry.Orientation
 import javafx.geometry.Pos
 import javafx.scene.text.FontWeight
@@ -7,11 +10,15 @@ import javafx.scene.text.TextAlignment
 import tornadofx.*
 
 class DecryptView : View("My View") {
+    val decryptController : DecryptController by inject()
+    val message = SimpleStringProperty()
+    val smartDecrypt = SimpleBooleanProperty()
+
     override val root = vbox {
         form {
             fieldset("Decrypt", labelPosition = Orientation.VERTICAL) {
-                textfield()
-                checkbox("Smart decrypt") {
+                textfield(message)
+                checkbox("Smart decrypt", smartDecrypt) {
                     style {
                         paddingAll = 5
                         fontWeight = FontWeight.BOLD
@@ -24,11 +31,14 @@ class DecryptView : View("My View") {
                         style {
                             fontWeight = FontWeight.BOLD
                         }
+                        action {
+                            decryptController.decrypt(message.value ?: "", smartDecrypt.value)
+                        }
                     }
                 }
             }
         }
-        label("TODO") {
+        label(decryptController.resultProperty) {
             style {
                 useMaxWidth = true
                 textAlignment = TextAlignment.CENTER
